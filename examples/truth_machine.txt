@@ -1,14 +1,17 @@
-/RN~
+/RnN~
 >1nR\
 \   /
 #END OF FILE#
-Truth machine, ~ sends out initial light, N takes numerical input. If N takes in a 0, the light will dim and not move on,
-if N takes in a 1, it will move on to R, re-intensify, and be reflected down into the loop:
->1nR\
-\   /
-the loop first sets intensity to 1, then does a numerical output, and then re-intensifies the light so that it can be
-reflected around the mirrors and start the loop again.
+Truth machine (explanation of fancy tick & post-tick execution babble not included, but this program does really heavily
+on these mechanics...).
 
-(to be technical, the light actually does move on to R, where it has the value of 0, and thus does not participate in
-the post-tick, where R executes, the program ~Nn (start, numerical in, numerical out) would indeed produce 0 for an input
-of 0, since n operates in the tick, not the post-tick).
+~ : emits light horizontally at the start of a program
+N : takes numerical input
+n : produces numerical output. If the light has an intensity of 0 here, it will dim after n outputs and not move on
+R : re-intensify, if the light made it here, it can now continue into the loop
+> : double/splitting mirror, allows the light from the above / mirror to enter the loop and move right
+1 : set intensity to 1
+n : numerical output
+R : re-intensify
+
+the remaining \, /, and \ reflect the light back to > where it can start the loop again
