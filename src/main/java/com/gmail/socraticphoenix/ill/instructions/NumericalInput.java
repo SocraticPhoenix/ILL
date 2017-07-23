@@ -36,7 +36,7 @@ public class NumericalInput extends AbstractInstruction {
 
     @Override
     public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-        light.setIntensity(15);
+        light.setIntensity(ProgramMatrix.DEFAULT_INTENSITY); //Persist light over to postTick
     }
 
     @Override
@@ -55,4 +55,5 @@ public class NumericalInput extends AbstractInstruction {
     public void dimImpl(Light light, ProgramMatrix matrix) {
 
     }
+
 }

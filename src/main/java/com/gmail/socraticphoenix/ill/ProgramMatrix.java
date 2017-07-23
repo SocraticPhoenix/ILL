@@ -22,6 +22,7 @@
 package com.gmail.socraticphoenix.ill;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class ProgramMatrix {
     public static final int DEFAULT_INTENSITY = 15;
@@ -69,7 +70,7 @@ public class ProgramMatrix {
         this.iterate((loc, cell) -> cell.onTick(this));
     }
 
-    public void stepBoard() {
+    public void stepBoard(Consumer<Loc> onLight) {
         Cell[][] newMatrix = new Cell[this.height][this.width];
         this.iterate((loc, cell) -> newMatrix[loc.y][loc.x] = cell.darkCopy());
         this.iterate((loc, cell) -> {
@@ -78,6 +79,7 @@ public class ProgramMatrix {
                 l.travel();
                 Loc nloc = loc.adjacent(l.getDirection());
                 if (this.contains(nloc)) {
+                    onLight.accept(nloc);
                     newMatrix[nloc.y][nloc.x].getLight().add(l);
                     cell.postTick(this, newMatrix[nloc.y][nloc.x], l);
                 } else {
@@ -89,9 +91,9 @@ public class ProgramMatrix {
         this.cells = newMatrix;
     }
 
-    public void processCycle() {
+    public void processCycle(Consumer<Loc> onLight) {
         this.tick();
-        this.stepBoard();
+        this.stepBoard(onLight);
     }
 
     public boolean hasNext() {
@@ -108,9 +110,10 @@ public class ProgramMatrix {
         return next;
     }
 
-    public void runToCompletion() {
+    public void runToCompletion(Runnable startCycle, Consumer<Loc> onLight) {
         while (hasNext()) {
-            processCycle();
+            startCycle.run();
+            processCycle(onLight);
         }
     }
 

@@ -21,9 +21,12 @@
  */
 package com.gmail.socraticphoenix.ill;
 
+import com.gmail.socraticphoenix.ill.instructions.CarryThrough;
+import com.gmail.socraticphoenix.ill.instructions.CharInput;
 import com.gmail.socraticphoenix.ill.instructions.CharOutput;
 import com.gmail.socraticphoenix.ill.instructions.GatherChar;
 import com.gmail.socraticphoenix.ill.instructions.Mirror;
+import com.gmail.socraticphoenix.ill.instructions.NewLine;
 import com.gmail.socraticphoenix.ill.instructions.NumericalInput;
 import com.gmail.socraticphoenix.ill.instructions.NumericalOutput;
 import com.gmail.socraticphoenix.ill.instructions.ReIntensify;
@@ -47,8 +50,11 @@ public class InstructionRegistry {
         register(new NumericalInput());
         register(new NumericalOutput());
         register(new ReIntensify());
+        register(new CharInput());
         register(new CharOutput());
         register(new GatherChar());
+        register(new CarryThrough());
+        register(new NewLine());
 
         register(new Mirror('\\', Mirrors.lst(Mirrors.LEFT_RIGHT_SLASH)));
         register(new Mirror('/', Mirrors.lst(Mirrors.RIGHT_LEFT_SLASH)));
@@ -57,10 +63,13 @@ public class InstructionRegistry {
         register(new Mirror('>', Mirrors.RIGHT_ARROW));
         register(new Mirror('<', Mirrors.LEFT_ARROW));
         register(new Mirror('^', Mirrors.UP_ARROW));
-        register(new Mirror('V', Mirrors.DOWN_ARROW));
+        register(new Mirror('v', Mirrors.DOWN_ARROW));
     }
 
     public static void register(Instruction instruction) {
+        if(instructions.containsKey(instruction.id())) {
+            throw new IllegalArgumentException("Duplicated id: " + new String(new int[]{instruction.id()}, 0, 1));
+        }
         instructions.put(instruction.id(), instruction);
     }
 

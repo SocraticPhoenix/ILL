@@ -1,3 +1,3 @@
 ~'Hc'ec'lc'lc'oc' c'Wc'oc'rc'lc'dc'!c
 #END OF FILE#
-Sends out light w/ ~, ' sets the intensity to the next char, c outputs intensity as char
+Sends out light w ~, ' sets the intensity to the next char, c outputs intensity as char

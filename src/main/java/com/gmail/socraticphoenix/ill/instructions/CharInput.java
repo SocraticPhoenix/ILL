@@ -23,29 +23,32 @@ package com.gmail.socraticphoenix.ill.instructions;
 
 import com.gmail.socraticphoenix.ill.Cell;
 import com.gmail.socraticphoenix.ill.Light;
+import com.gmail.socraticphoenix.ill.LightSystem;
 import com.gmail.socraticphoenix.ill.ProgramMatrix;
-import com.gmail.socraticphoenix.ill.information.CharGatherInformation;
 
-public class GatherChar extends AbstractInstruction {
-    
-    public GatherChar() {
-        super('\'');
+import java.util.Optional;
+
+public class CharInput extends AbstractInstruction {
+
+    public CharInput() {
+        super('C');
     }
 
     @Override
     public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-        light.applyInformation("gather$char", new CharGatherInformation(0));
-        light.setIntensity(15);
+        light.setIntensity(ProgramMatrix.DEFAULT_INTENSITY); //Persist light over to postTick
     }
 
     @Override
     public void postTickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-
+        light.setIntensity(LightSystem.in("Enter a character", s -> {
+            return s.codePoints().count() == 1 ? Optional.empty() : Optional.of(s + " is not a character");
+        }).codePoints().toArray()[0]);
     }
 
     @Override
     public void dimImpl(Light light, ProgramMatrix matrix) {
 
     }
-    
+
 }

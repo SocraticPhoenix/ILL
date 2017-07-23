@@ -32,8 +32,8 @@ public interface Mirrors {
     Function<Direction, Direction> VERTICAL_FLAT = d -> d.isHorizontal() ? d.flatReflection() : d.isDiagonal() ? d.reflectX() : d;
     Function<Direction, Direction> LEFT_RIGHT_SLASH = d -> d.isDiagonal() ? (d.isUnified() ? d : d.flatReflection()) : (d.isHorizontal() ? d.withY(d.getXmod()) : d.withX(d.getYmod()));
     Function<Direction, Direction> RIGHT_LEFT_SLASH = d -> d.isDiagonal() ? (!d.isUnified() ? d : d.flatReflection()) : (d.isHorizontal() ? d.withY(-d.getXmod()) : d.withX(-d.getYmod()));
-    Function<Direction, List<Direction>> LEFT_ARROW = doubled(Direction.WEST, Direction.SOUTH, Direction.NORTH, Direction.EAST, RIGHT_LEFT_SLASH, LEFT_RIGHT_SLASH);
-    Function<Direction, List<Direction>> RIGHT_ARROW = doubled(Direction.EAST, Direction.SOUTH, Direction.NORTH, Direction.WEST, LEFT_RIGHT_SLASH, RIGHT_LEFT_SLASH);
+    Function<Direction, List<Direction>> LEFT_ARROW = doubled(Direction.EAST, Direction.SOUTH, Direction.NORTH, Direction.WEST, RIGHT_LEFT_SLASH, LEFT_RIGHT_SLASH);
+    Function<Direction, List<Direction>> RIGHT_ARROW = doubled(Direction.WEST, Direction.SOUTH, Direction.NORTH, Direction.EAST, LEFT_RIGHT_SLASH, RIGHT_LEFT_SLASH);
     Function<Direction, List<Direction>> UP_ARROW = doubled(Direction.SOUTH, Direction.EAST, Direction.WEST, Direction.NORTH, RIGHT_LEFT_SLASH, LEFT_RIGHT_SLASH);
     Function<Direction, List<Direction>> DOWN_ARROW = doubled(Direction.NORTH, Direction.EAST, Direction.WEST, Direction.SOUTH, LEFT_RIGHT_SLASH, RIGHT_LEFT_SLASH);
 

@@ -45,6 +45,22 @@ public class Light {
         return light;
     }
 
+    public void setInitialIntensity(double initialIntensity) {
+        this.initialIntensity = initialIntensity;
+    }
+
+    public void setDistanceTraveled(int distanceTraveled) {
+        this.distanceTraveled = distanceTraveled;
+    }
+
+    public double getInitialIntensity() {
+        return this.initialIntensity;
+    }
+
+    public int getDistanceTraveled() {
+        return this.distanceTraveled;
+    }
+
     public void applyInformation(String key, Information information) {
         this.informationMap.put(key, information);
     }
@@ -66,8 +82,8 @@ public class Light {
         return this.informationMap.values();
     }
 
-    public Information getInformation(String key) {
-        return this.informationMap.get(key);
+    public <T extends Information> T getInformation(String key) {
+        return (T) this.informationMap.get(key);
     }
 
     public double getIntensity() {

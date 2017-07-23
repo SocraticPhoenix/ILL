@@ -19,33 +19,66 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.gmail.socraticphoenix.ill.instructions;
+package com.gmail.socraticphoenix.ill.information;
 
 import com.gmail.socraticphoenix.ill.Cell;
+import com.gmail.socraticphoenix.ill.Information;
 import com.gmail.socraticphoenix.ill.Light;
 import com.gmail.socraticphoenix.ill.ProgramMatrix;
-import com.gmail.socraticphoenix.ill.information.CharGatherInformation;
 
-public class GatherChar extends AbstractInstruction {
-    
-    public GatherChar() {
-        super('\'');
+public class CharGatherInformation implements Information {
+    private int content;
+    private int turnCount;
+
+    public CharGatherInformation(int content) {
+        this.content = content;
+        this.turnCount = 1;
+    }
+
+    public int getContent() {
+        return this.content;
+    }
+
+    public void setContent(int content) {
+        this.content = content;
     }
 
     @Override
-    public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-        light.applyInformation("gather$char", new CharGatherInformation(0));
+    public boolean isExpired(Light light, Cell cell, ProgramMatrix matrix) {
+        return this.turnCount <= 0;
+    }
+
+    @Override
+    public void onExpiration(Light light, Cell cell, ProgramMatrix matrix) {
+        apply(light);
+    }
+
+    @Override
+    public void tick(Light light, Cell cell, ProgramMatrix matrix) {
+        this.content = cell.getContent();
         light.setIntensity(15);
+        this.turnCount--;
     }
 
     @Override
-    public void postTickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-
+    public void postTick(Light light, Cell cell, ProgramMatrix matrix) {
+        
     }
 
     @Override
-    public void dimImpl(Light light, ProgramMatrix matrix) {
-
+    public void onDim(Light light, Cell cell, ProgramMatrix matrix) {
+        
     }
-    
+
+    private void apply(Light light) {
+        light.setIntensity(this.content);
+    }
+
+    @Override
+    public Information copy() {
+        CharGatherInformation n = new CharGatherInformation(this.content);
+        n.turnCount = this.turnCount;
+        return n;
+    }
+
 }

@@ -2,16 +2,16 @@
 >1nR\
 \   /
 #END OF FILE#
-Truth machine (explanation of fancy tick & post-tick execution babble not included, but this program does really heavily
+Truth machine (explanation of fancy tick & post-tick execution babble not included, but this program does rely heavily
 on these mechanics...).
 
-~ : emits light horizontally at the start of a program
-N : takes numerical input
-n : produces numerical output. If the light has an intensity of 0 here, it will dim after n outputs and not move on
-R : re-intensify, if the light made it here, it can now continue into the loop
-> : double/splitting mirror, allows the light from the above / mirror to enter the loop and move right
-1 : set intensity to 1
-n : numerical output
-R : re-intensify
+~ : emits light horizontally at the start of a program.
+N : takes numerical input, set light intensity to the input.
+n : produces numerical output. If the light has an intensity of 0 here, it will dim after n outputs and not move on.
+R : re-intensify, if the light made it here, it can now continue into the loop.
+> : double/splitting mirror, allows the light from the above / mirror to enter the loop and move right.
+1 : set intensity to 1.
+n : numerical output.
+R : re-intensify.
 
 the remaining \, /, and \ reflect the light back to > where it can start the loop again

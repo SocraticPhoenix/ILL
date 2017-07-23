@@ -24,18 +24,16 @@ package com.gmail.socraticphoenix.ill.instructions;
 import com.gmail.socraticphoenix.ill.Cell;
 import com.gmail.socraticphoenix.ill.Light;
 import com.gmail.socraticphoenix.ill.ProgramMatrix;
-import com.gmail.socraticphoenix.ill.information.CharGatherInformation;
 
-public class GatherChar extends AbstractInstruction {
-    
-    public GatherChar() {
-        super('\'');
+public class NewLine extends AbstractInstruction {
+
+    public NewLine() {
+        super('l');
     }
 
     @Override
     public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-        light.applyInformation("gather$char", new CharGatherInformation(0));
-        light.setIntensity(15);
+        System.out.println();
     }
 
     @Override
@@ -47,5 +45,5 @@ public class GatherChar extends AbstractInstruction {
     public void dimImpl(Light light, ProgramMatrix matrix) {
 
     }
-    
+
 }

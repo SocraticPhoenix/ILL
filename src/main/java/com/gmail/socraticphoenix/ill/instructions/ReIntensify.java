@@ -33,7 +33,7 @@ public class ReIntensify extends AbstractInstruction {
 
     @Override
     public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-
+        light.setIntensity(ProgramMatrix.DEFAULT_INTENSITY);
     }
 
     @Override

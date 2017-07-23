@@ -35,14 +35,16 @@ public abstract class AbstractInstruction implements Instruction {
 
     @Override
     public void onTick(Light light, Cell cell, ProgramMatrix matrix) {
-        //TODO additional handler code here
-
-        tickImpl(light, cell, matrix);
+        if(!light.hasInformation("gather$char")) {
+            tickImpl(light, cell, matrix);
+        }
     }
 
     @Override
     public void postTick(Light light, Cell cell, ProgramMatrix matrix) {
-        postTickImpl(light, cell, matrix);
+        if(!light.hasInformation("gather$char")) {
+            postTickImpl(light, cell, matrix);
+        }
     }
 
     @Override

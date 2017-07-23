@@ -1,0 +1,9 @@
+/~
+>CcRl\
+\    /
+#END OF FILE#
+Pretty simple, use the conventional
+/~
+>\
+\/
+loop setup, then do character input, character output, re-intensify, new line, loop

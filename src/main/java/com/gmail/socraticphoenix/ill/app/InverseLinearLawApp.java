@@ -71,7 +71,7 @@ public class InverseLinearLawApp {
 
         if(flags.containsKey("r") || flags.isEmpty()) {
             ProgramMatrix matrix = new ProgramMatrix(new CharMatrix(content));
-            matrix.runToCompletion();
+            matrix.runToCompletion(() -> {}, l -> {});
         }
 
     }

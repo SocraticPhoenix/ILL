@@ -19,33 +19,11 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.gmail.socraticphoenix.ill.instructions;
 
-import com.gmail.socraticphoenix.ill.Cell;
-import com.gmail.socraticphoenix.ill.Light;
-import com.gmail.socraticphoenix.ill.ProgramMatrix;
-import com.gmail.socraticphoenix.ill.information.CharGatherInformation;
+public class Test {
 
-public class GatherChar extends AbstractInstruction {
-    
-    public GatherChar() {
-        super('\'');
-    }
-
-    @Override
-    public void tickImpl(Light light, Cell cell, ProgramMatrix matrix) {
-        light.applyInformation("gather$char", new CharGatherInformation(0));
-        light.setIntensity(15);
-    }
-
-    @Override
-    public void postTickImpl(Light light, Cell cell, ProgramMatrix matrix) {
+    public static void main(String[] args) {
 
     }
 
-    @Override
-    public void dimImpl(Light light, ProgramMatrix matrix) {
-
-    }
-    
 }
